@@ -1,0 +1,29 @@
+---
+ - name: datasource_connection_test_PROD
+ - hosts: prod
+ - become: yes
+ - gather_facts: no
+ - tasks:
+     block:
+     - name: Run datasource connection test script on all the servers
+       command: sh /srv/AUTOMATION/datasourceconnectiontest.sh
+       register: status1
+     - debug: var=status1.stdout_lines
+     
+     
+     resuce:
+     - name: Run datasource connection test script on all the servers
+       command: sh /opt/AUTOMATION/datasourceconnectiontest.sh
+       register: status2
+     - debug: var=status2.stdout_lines
+     
+ 
+ 
+    
+    [prod]
+    10.146.65.44
+    10.146.65.45
+    10.146.65.46
+    ....
+     
+     
